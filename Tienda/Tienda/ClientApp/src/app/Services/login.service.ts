@@ -12,7 +12,7 @@ export class LoginService extends BaseService {
 
   constructor(protected http: HttpClient) {
     super(http);
-    this.pathService ='Account';
+    this.pathService ='Account/';
   }
   public Login(datos:User){
     return this.Post<string,User>('Login',datos);

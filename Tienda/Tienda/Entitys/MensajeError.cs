@@ -7,7 +7,7 @@ namespace Tienda.Entitys
 {
     public class MensajeError
     {
-        public int Id;
-        public string Mensaje;
+        public int Id { get; set; }
+        public string Mensaje { get; set; }
     }
 }

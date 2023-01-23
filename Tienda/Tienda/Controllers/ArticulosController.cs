@@ -11,6 +11,7 @@ using Tienda.Entitys;
 
 namespace Tienda.Controllers
 {
+
     //[EnableCors("AllowOrigin")]
     [Produces("application/json")]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(MensajeError))]
