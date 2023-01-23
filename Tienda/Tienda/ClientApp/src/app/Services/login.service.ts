@@ -18,7 +18,8 @@ export class LoginService extends BaseService {
     return this.Post<string,User>('Login',datos);
   }
   public LogOut(datos:User){
-    return this.Put<string,Params>('LogOut',datos);
+    console.log(datos);
+    return this.Put<boolean,User>('LogOut',datos);
   }
 
   public IsLogin(datos:User){    

@@ -14,8 +14,9 @@ export class SeguridadGuard implements CanActivate, CanActivateChild {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-       if(!this.GetState()) {
+      var u = this.GetUser();
+      console.log(u);
+      if(u.user == '' || u.pwd == '' || u.user == null || u.pwd == null) {
          return this.router.navigate(['/acceso']).then(() => false);
        }
        return true;
@@ -23,22 +24,22 @@ export class SeguridadGuard implements CanActivate, CanActivateChild {
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  
-      if(!this.GetState()) {
+      var u = this.GetUser();
+      console.log(u);
+      if(u.user == '' || u.pwd == '' || u.user == null || u.pwd == null) {
         return this.router.navigate(['/acceso']).then(() => false);
       }
       return true;
      
   }
-  private LoginRoute(){
-    return this.router.navigate(['/acceso']).then(() => false);
-  }
+
   private GetUser():User{
     return {user:localStorage.getItem(environment.luser),pwd:localStorage.getItem(environment.lkey)};
   }
   private async GetState(){
-    var r = await this.auth.IsLogin(this.GetUser());
-    console.log(r);
-    return r;
+    
+    var f=  await this.auth.IsLogin(this.GetUser()).subscribe((a:boolean)=>{return a;},()=>{return false;});
+    console.log(f);
+    return f;
   }
 }
