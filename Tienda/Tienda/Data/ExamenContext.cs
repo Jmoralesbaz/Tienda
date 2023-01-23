@@ -80,7 +80,7 @@ namespace Tienda.Data
 
             modelBuilder.Entity<ArticulosEnTiendas>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Articulos_En_Tiendas");
 
@@ -106,7 +106,7 @@ namespace Tienda.Data
 
             modelBuilder.Entity<ClienteConArticulos>(entity =>
             {
-                entity.HasNoKey();
+              //  entity.HasNoKey();
 
                 entity.ToTable("Cliente_Con_Articulos");
 

@@ -23,13 +23,13 @@ namespace Tienda.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(List<DetalleArticulo>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<DetalleArticulo>))]
         public IActionResult ListarTodo()
         {
             return ResponseHttp(Bussiness.ListarTodo<List<DetalleArticulo>>());
         }
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(int))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
         public IActionResult Crear(Articulo cliente)
         {
             return ResponseHttp<int>(Bussiness.Crear<int, Articulo>(cliente));
