@@ -1,0 +1,48 @@
+<div class="row my-5">
+    <div class="col-12">
+        <h1 class="mt-5">Tiendas</h1>
+        <div class="row mb-4 px-5">
+            <div class="col-4">
+                <form class="row g-3" [formGroup]="frmTienda" (ngSubmit)="guardar(frmTienda.value);">
+                    <input type="hidden" formControlName="id">
+                    <div class="col-12">
+                      <label for="sucursla" class="form-label">Sucursal</label>
+                      <input type="text" class="form-control" formControlName="sucursal" >
+                    </div>
+                    <div class="col-12">
+                      <label for="clave" class="form-label" >Direccion</label>
+                      <input type="text" class="form-control" formControlName="direccion">
+                    </div>                    
+                    <div class="col-12 ">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                  </form>
+            </div>
+        <!-- </div>
+        <hr>
+        <div class="row mt-4"> -->
+            <div class="col-8">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Sucursal</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fila of detalle">
+                        <th scope="row">{{fila.id}}</th>
+                        <td>{{fila.sucursal}}</td>
+                        <td>{{fila.direccion}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary" (click)="editar(fila)">Editar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>  
+        </div>
+    </div>
+</div>

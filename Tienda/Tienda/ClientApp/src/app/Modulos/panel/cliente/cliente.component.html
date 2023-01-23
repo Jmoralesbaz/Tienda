@@ -1,0 +1,54 @@
+<div class="row my-5">
+    <div class="col-12">
+        <h1 class="mt-5">Clientes</h1>
+        <div class="row mb-4 px-5">
+            <div class="col-3">
+                <form class="row g-3" [formGroup]="frmCliente" (ngSubmit)="guardar(frmCliente.value)">
+                    <input type="hidden" formControlName="id">
+                    
+                    <div class="col-12">
+                        <label for="Nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" >
+                    </div>
+                    <div class="col-12">
+                        <label for="apellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" formControlName="apellidos" >
+                    </div>
+                    <div class="col-12">
+                        <label for="direccion" class="form-label">Direccion</label>
+                        <input type="text" class="form-control" formControlName="direccion" >
+                    </div>
+                    
+                    <div class="col-4 pt-4 mt-4">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                  </form>
+            </div>
+
+            <div class="col-9">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>                        
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Direccion</th>                                                
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fila of detalle">
+                        <th scope="row">{{fila.id}}</th>
+                        <td>{{fila.nombre}}</td>
+                        <td>{{fila.apellidos}}</td>
+                        <td>{{fila.direccion}}</td>                        
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary" (click)="editar(fila)">Editar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>  
+        </div>
+    </div>
+</div>

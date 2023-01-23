@@ -1,0 +1,76 @@
+<div class="row my-5">
+    <div class="col-12">
+        <h1 class="mt-5">Articulos</h1>
+        <div class="row mb-4 px-5">
+            <div class="col-12">
+                <form class="row g-3" [formGroup]="frmArticulo" (ngSubmit)="guardar(frmArticulo.value)">
+                    <input type="hidden"   formControlName="id">
+                    <input type="hidden"   formControlName="imagen">
+                    <div class="col-9">
+                      <div class="row">
+                        <div class="col-2">
+                          <label for="codigo" class="form-label">Codigo</label>
+                          <input type="text" class="form-control" formControlName="codigo">
+                        </div>
+                        <div class="col-2">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" class="form-control"  formControlName="precio">
+                        </div>
+                        <div class="col-2">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control"  formControlName="stock">
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="fileImg" class="form-label">Imagen</label>
+                            <input class="form-control" type="file" id="fileImg" name="fileImg" >
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <textarea class="form-control" formControlName="descripcion" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <img *ngIf="fotoarticulo != ''" src="data:image/jpeg;base64,{{fotoarticulo}}" width="100%" alt="">
+                    </div>
+                   
+                    <div class="col-4 pt-4 mt-4">
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row mt-4">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>                        
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Codigo</th>
+                        <!-- <th scope="col">Tienda</th> -->
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fila of detalle">
+                        <th scope="row">{{fila.Id}}</th>
+                        <td><img src="data:image/jpeg;base64,{{fila.imagen}}" width="50" alt=""></td>
+                        <td>{{fila.codigo}}</td>
+                        <td>{{fila.descripcion}}</td>
+                        <td>$ {{fila.precio}}</td>
+                        <td>{{fila.stock}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary" (click)="editar(fila)" >Editar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>  
+        </div>
+    </div>
+</div>
