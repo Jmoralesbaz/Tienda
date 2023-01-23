@@ -65,7 +65,7 @@ namespace Tienda.Bussiness
             if ( usuarioBd != null)
             {
 
-                if (examenContext.Sesiones.Where(w => w.Usuario == usuarioBd.Id).FirstOrDefault() is null)
+                if (examenContext.Sesiones.Where(w => w.Usuario == usuarioBd.Id && (w.Activa??false)).FirstOrDefault() is null)
                 {
                     string key = Guid.NewGuid().ToString();
                     examenContext.Sesiones.Add(new Sesiones { Activa=true, Sesion=key, Usuario=usuarioBd.Id });

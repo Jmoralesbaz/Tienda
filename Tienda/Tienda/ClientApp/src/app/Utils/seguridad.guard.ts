@@ -15,36 +15,30 @@ export class SeguridadGuard implements CanActivate, CanActivateChild {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      // if (!this.auth.IsLogin()) {
-      //   return this.router.navigate(['/acceso']).then(() => false);
-      // }
-      // return true;
-      this.auth.IsLogin(this.GetUser()).subscribe((d:boolean)=>{
-        return (d)?true:this.LoginRoute();
-      },()=>{
-        return this.LoginRoute();
-      });
-      return this.LoginRoute();
+       if(!this.GetState()) {
+         return this.router.navigate(['/acceso']).then(() => false);
+       }
+       return true;
   }
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // if (!this.auth.IsLogin()) {
-      //   return this.router.navigate(['/acceso']).then(() => false);
-      // }
-      // return true;
-
-      this.auth.IsLogin(this.GetUser()).subscribe((d:boolean)=>{
-        return (d)?true:this.LoginRoute();
-      },()=>{
-        return this.LoginRoute();
-      });
-      return this.LoginRoute();
+  
+      if(!this.GetState()) {
+        return this.router.navigate(['/acceso']).then(() => false);
+      }
+      return true;
+     
   }
   private LoginRoute(){
     return this.router.navigate(['/acceso']).then(() => false);
   }
   private GetUser():User{
     return {user:localStorage.getItem(environment.luser),pwd:localStorage.getItem(environment.lkey)};
+  }
+  private async GetState(){
+    var r = await this.auth.IsLogin(this.GetUser());
+    console.log(r);
+    return r;
   }
 }
