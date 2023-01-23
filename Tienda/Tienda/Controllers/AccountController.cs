@@ -42,6 +42,5 @@ namespace Tienda.Controllers
         {
             return ResponseHttp<bool>(BUserAccount.SesionActiva(usuario));
         }
-
     }
 }
