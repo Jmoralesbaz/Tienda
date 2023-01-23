@@ -29,7 +29,7 @@ namespace Tienda.Controllers
             return ResponseHttp<string>(BUserAccount.Autentica(usuario));
         }
 
-        [HttpPut]
+        [HttpPut("LogOut")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
         public IActionResult EndSesion(Usuario usuario)
         {

@@ -15,16 +15,13 @@ export class LoginService extends BaseService {
     this.pathService ='Account';
   }
   public Login(datos:User){
-    return this.Post<string,User>('',datos);
+    return this.Post<string,User>('Login',datos);
   }
-  public LogOut(datos:Params){
-    return this.Put<string,Params>('',datos);
+  public LogOut(datos:User){
+    return this.Put<string,Params>('LogOut',datos);
   }
 
-  public IsLogin(){
-    var sesion =localStorage.getItem('ids');
-    this.Get<boolean>('',[{name:'id',value:sesion}]).subscribe((activa)=>{
-      return activa;
-    });
+  public IsLogin(datos:User){    
+   return this.Post<boolean,User>('SesionActiva',datos);
   }
 }
